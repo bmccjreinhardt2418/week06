@@ -1,0 +1,35 @@
+# WEEK 04 LAB ASSIGNMENT
+
+## Description
+
+This collection contains initial Ansible Playbook scripting to implement web and database services for Apache 2 and MariaDb onto openSUSE Linux distributions.  Test tasks are included to validate installation and removal of Google Chrome web browser.
+
+## Requirements
+
+Ansible 10 and its prerequisites.
+
+See [using Ansible collections](https://docs.ansible.com/ansible/devel/user_guide/collections_using.html) for more details.
+
+## Use
+
+HTML Files:     Upload any overriding HTML files to the html folder within this collection
+INVENTORY:      Ensure hostname, ip address, and username for required hosts are entered into inventory.ini
+
+ansible-playbook -i inventory.ini playbook.yml
+
+
+## Contributing (Optional)
+
+This section is optional, and provides a section to describe how to contribute to the collection. You can include, or link to, contribution guidelines that describe the process for contribution and a code of conduct for contributing to the collection and interacting with other contributors. This section should also include contact information or links to community channels for discussion.
+
+
+## Support
+
+This collection is provided without support as a student exercise for the purposes of study and testing.
+
+## License Information
+
+This collection is distributed under GNU Lesser General Public License.
+https://www.gnu.org/licenses/lgpl-3.0.en.html#license-text
+
+This license does not supersede or conflict with any referenced software packages contained within the playbook.  Such software packages maintain their own existing license protections as this collection only references publicly available compiled packages for the purpose of installation.

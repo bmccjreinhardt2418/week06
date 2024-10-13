@@ -1,0 +1,72 @@
+- name: Week 04 Assignment
+  hosts: lab
+  
+  tasks:
+  - name: Install Google GPG
+    ansible.builtin.rpm_key:
+      key: 'https://dl.google.com/linux/linux_signing_key.pub'
+      state: present
+    become: true
+
+  - name: Install Google Chrome
+    ansible.builtin.dnf:
+      name: 'https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm'
+      state: present
+    become: true
+
+  - name: Install Firefox
+    ansible.builtin.dnf:
+      name: firefox
+      state: present
+    become: true
+
+  - name: Install Git
+    ansible.builtin.dnf:
+      name: git
+      state: present
+    become: true
+
+  - name: Install Apache2 (httpd)
+    ansible.builtin.dnf:
+      name: httpd
+      state: present
+    become: true
+
+  - name: Install MariaDb
+    ansible.builtin.dnf:
+      name: mariadb
+      state: present
+    become: true
+
+  - name: Copy HTML Files
+    ansible.builtin.copy:
+      src: /home/jordan/week04/html/
+      dest: /var/www/html/
+      owner: apache
+      group: apache
+      mode: '0644'
+    become: true
+
+  - name: Uninstall Google Chrome
+    ansible.builtin.dnf:
+      name: google-chrome
+      state: absent
+    become: true
+
+  - name: Restart Server
+    ansible.builtin.reboot:
+    become: true
+
+  - name: Enable HTTPD
+    ansible.builtin.systemd_service:
+      name: httpd
+      enabled: true
+      masked: no
+    become: true
+
+  - name: Restart HTTPD
+    ansible.builtin.systemd_service:
+      state: restarted
+      daemon_reload: true
+      name: httpd
+    become: true
