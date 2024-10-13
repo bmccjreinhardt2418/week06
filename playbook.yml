@@ -2,6 +2,19 @@
   hosts: lab
   
   tasks:
+  ## New Feature:  Install EPEL onto Server
+  - name: Install epel GPG
+    ansible.builtin.rpm_key:
+      key: 'https://download.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8'
+      state: present
+    become: true
+
+  - name: Install epel from remote repo on CentOS 8
+    ansible.builtin.dnf:
+      name: 'https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm'
+      state: present
+    when: ansible_distribution_major_version == "8"
+
   - name: Install Google GPG
     ansible.builtin.rpm_key:
       key: 'https://dl.google.com/linux/linux_signing_key.pub'
